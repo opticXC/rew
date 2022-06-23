@@ -12,9 +12,9 @@ class reddit(commands.Cog):
 
 
 
-    @commands.command(help= f"Show images from any subreddit \n {prefix}reddit *subreddit* (!!!!CASESENSITIVE!!!!)  ",
+    @commands.command(help= f"Show images from any subreddit \n {prefix}sbr *subreddit* (!!!!CASESENSITIVE!!!!)  ",
                     brief = "show images from any subreddit")
-    async def reddit(self,ctx, sbr):
+    async def srb(self,ctx, sbr):
         embed = discord.Embed()
         async with aiohttp.ClientSession() as cs:
             async with cs.get(
