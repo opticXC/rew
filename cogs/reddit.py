@@ -1,3 +1,5 @@
+import json
+from sys import prefix
 import discord
 import random
 import aiohttp
@@ -7,6 +9,21 @@ from discord.ext import commands
 class reddit(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+
+
+    @commands.command(help= f"Show images from any subreddit \n {prefix}reddit *subreddit* (!!!!CASESENSITIVE!!!!)  ",
+                    brief = "show images from any subreddit")
+    async def reddit(self,ctx, sbr):
+        embed = discord.Embed()
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get(
+                    f'https://www.reddit.com/r/{sbr}/new.json?sort=hot') as r:
+                res = await r.json()
+            embed.set_image(url=res['data']['children'][random.randint(0, 25)]
+                            ['data']['url'])
+            await ctx.send(embed=embed)
+        
 
     @commands.command(help="shows memes from r/dankmemes ",
                       brief="shows memes from r/dankmemes ")

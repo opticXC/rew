@@ -1,9 +1,13 @@
 import discord
 import os
 import json
+
+from dotenv import load_dotenv
 from contrun import contr
 from discord.ext import commands
 
+
+load_dotenv()
 client = os.environ['CLIENT']
 
 
